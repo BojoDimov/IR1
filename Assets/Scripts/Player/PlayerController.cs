@@ -92,12 +92,11 @@ public class PlayerController : MonoBehaviour
 
 		if (Physics.Raycast(transform.position, ray, out RaycastHit hit, 10))
 		{
-			Debug.DrawRay(transform.position, 10 * ray, Color.red);
-
-			position = new Vector3(transform.position.x, hit.point.y + 2, transform.position.z);
+			Debug.DrawRay(transform.position, 2 * ray, Color.red);
+			position = new Vector3(transform.position.x, hit.point.y + 1, transform.position.z);
 			rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
 
-			//transform.position = Vector3.Slerp(transform.position, position, 0.25f);
+			transform.position = position;//Vector3.Slerp(transform.position, position, 0.25f);
 			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.25f );
 		}
 	}
