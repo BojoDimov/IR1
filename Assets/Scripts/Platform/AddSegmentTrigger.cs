@@ -17,8 +17,8 @@ public class AddSegmentTrigger : MonoBehaviour
 			SegmentsController = Game.GetComponent<SegmentsController>();
 	}
 
-	void OnTriggerEnter()
-  {
+	void OnTriggerEnter(Collider collision)
+	{
 		if (isColliding)
 			return;
 
@@ -28,7 +28,7 @@ public class AddSegmentTrigger : MonoBehaviour
 			SegmentsController.AddSegment();
 	}
 
-	void OnTriggerExit()
+	void OnTriggerExit(Collider collision)
 	{
 		isColliding = false;
 	}

@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 	PlayerInputHandler inputHandler;
 
 	// Parameters
+	public int health = 100;
 	public float speed = 10f;
 	public float movementSharpness = 15;
 	public float maxVelocity = 100f;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
 	public Vector3 MovementBounds = new Vector3(Mathf.Infinity, Mathf.Infinity, 40.8f);
 
 	// Runtime Variables
-	Vector3 velocity = Vector3.zero;
+	public Vector3 velocity = Vector3.zero;
 	float lastSidewaysMovement = 0f;
 
 	void Start()
@@ -84,19 +85,21 @@ public class PlayerController : MonoBehaviour
 		return transform.TransformVector(result);
 	}
 
+
+	// TODO: fix position
 	void changeOrientation()
 	{
 		var ray = transform.TransformDirection(Vector3.down);
 		Quaternion rotation;
-		Vector3 position;
+		//Vector3 position;
 
 		if (Physics.Raycast(transform.position, ray, out RaycastHit hit, 10))
 		{
 			Debug.DrawRay(transform.position, 2 * ray, Color.red);
-			position = new Vector3(transform.position.x, hit.point.y + 1, transform.position.z);
+			//position = new Vector3(transform.position.x, hit.point.y + 1, transform.position.z);
 			rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
 
-			transform.position = position;//Vector3.Slerp(transform.position, position, 0.25f);
+			//transform.position = position;//Vector3.Slerp(transform.position, position, 0.25f);
 			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 0.25f );
 		}
 	}
